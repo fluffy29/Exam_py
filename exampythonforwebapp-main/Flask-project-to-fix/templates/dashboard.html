@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Student Dashboard</h1>
+
+    <!-- Student Rankings and Grades -->
+    <h2>Student Rankings and Grades</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Student</th>
+                {% for subject in subjects %}
+                <th>{{ subject.name }}</th> <!-- Display subject names -->
+                {% endfor %}
+                <th>Average</th> <!-- Column for average grade -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ loop.index }}</td> <!-- Rank (1st, 2nd, 3rd, etc.) -->
+                <td>{{ student.name }}</td> <!-- Student name -->
+                {% for subject in subjects %}
+                <td>
+                    {% if student_subject_grades[student.id]['grades'][subject.id] %}
+                    {{ student_subject_grades[student.id]['grades'][subject.id] | join(', ') }}
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                {% endfor %}
+                <td>{{ student.average | round(2) }}</td> <!-- Average grade -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

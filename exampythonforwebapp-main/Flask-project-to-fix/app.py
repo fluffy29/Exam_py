@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 fake = Faker()
 
-# Generate fake data once and store it in global variables
 def generate_fake_data():
     subject_names = ["Math", "Science", "History", "English", "Geography"]
 
@@ -25,13 +24,12 @@ def generate_fake_data():
 
     return students, subjects, grades
 
-# Generate fake data once when the app starts
 students, subjects, grades = generate_fake_data()
 
 @app.route('/')
 def dashboard():
     try:
-        # Calculate average grades for each student
+       
         student_grades = {student['id']: [] for student in students}
         for grade in grades:
             student_grades[grade['student']].append(grade['grade'])
@@ -41,16 +39,13 @@ def dashboard():
             for student_id, grades in student_grades.items()
         }
 
-        # Prepare student data for the template
         student_data = [
             {"id": student["id"], "name": student["name"], "average": averages[student["id"]]}
             for student in students
         ]
 
-        # Rank students by their average grades
         ranked_students = sorted(student_data, key=lambda x: x["average"], reverse=True)
 
-        # Organize grades by student and subject
         student_subject_grades = {}
         for student in students:
             student_subject_grades[student['id']] = {
@@ -63,11 +58,21 @@ def dashboard():
             subject_id = grade['subject']
             student_subject_grades[student_id]['grades'][subject_id].append(grade['grade'])
 
+   
+        subject_averages = {}
+        for subject in subjects:
+            subject_grades = [grade['grade'] for grade in grades if grade['subject'] == subject['id']]
+            subject_averages[subject['id']] = {
+                "name": subject['name'],
+                "average": sum(subject_grades) / len(subject_grades) if subject_grades else 0
+            }
+
         return render_template(
             "dashboard.html",
             students=ranked_students,
             subjects=subjects,
-            student_subject_grades=student_subject_grades
+            student_subject_grades=student_subject_grades,
+            subject_averages=subject_averages
         )
 
     except Exception as e:

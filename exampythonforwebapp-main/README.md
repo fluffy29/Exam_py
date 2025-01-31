@@ -5,8 +5,6 @@ You are a developer intern who has just joined a school that is behind in digita
 You have been tasked with creating a tool to input and consult grades.
 You’re not the first person assigned to this mission—another intern had started working on it, and now it’s your job to continue their work. It was decided to create two applications, one in Flask and one in Django, as part of the first version (V1) of the student management application.
 
-
-
 ---------
 Overview
 
@@ -17,9 +15,6 @@ The Flask application: Consumes data from the Django API to display it through a
 The previous intern worked on the Flask app, but the work they did lacks quality and doesn’t function properly. You will need to fix this broken code and update it to meet the project requirements.
 
 The Django application, which will be relatively simple, needs to be developed from scratch. To ensure the Flask app can interact with it correctly, the Django application should use the Django REST Framework to provide a REST API.
-
-
-
 
 ---------
 Detailed Requirements

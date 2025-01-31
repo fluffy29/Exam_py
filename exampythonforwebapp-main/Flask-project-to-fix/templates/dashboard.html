@@ -37,9 +37,9 @@
                 <th>Rank</th>
                 <th>Student</th>
                 {% for subject in subjects %}
-                <th>{{ subject.name }}</th> <!-- Display subject names -->
+                <th>{{ subject.name }}</th>
                 {% endfor %}
-                <th>Average</th> <!-- Column for average grade -->
+                <th>Average</th> 
             </tr>
         </thead>
         <tbody>
@@ -56,7 +56,25 @@
                     {% endif %}
                 </td>
                 {% endfor %}
-                <td>{{ student.average | round(2) }}</td> <!-- Average grade -->
+                <td>{{ student.average | round(2) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Subject Averages</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Average Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjects %}
+            <tr>
+                <td>{{ subject.name }}</td>
+                <td>{{ subject_averages[subject.id].average | round(2) }}</td>
             </tr>
             {% endfor %}
         </tbody>

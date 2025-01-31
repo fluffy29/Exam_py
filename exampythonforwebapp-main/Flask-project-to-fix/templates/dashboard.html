@@ -37,9 +37,9 @@
                 <th>Rank</th>
                 <th>Student</th>
                 {% for subject in subjects %}
-                <th>{{ subject.name }}</th>
+                <th>{{ subject.name }}</th> <!-- Display subject names -->
                 {% endfor %}
-                <th>Average</th> 
+                <th>Average</th> <!-- Column for average grade -->
             </tr>
         </thead>
         <tbody>
@@ -51,17 +51,19 @@
                 <td>
                     {% if student_subject_grades[student.id]['grades'][subject.id] %}
                     {{ student_subject_grades[student.id]['grades'][subject.id] | join(', ') }}
+                    (Avg: {{ student_subject_averages[student.id]['averages'][subject.id] | round(2) }})
                     {% else %}
                     -
                     {% endif %}
                 </td>
                 {% endfor %}
-                <td>{{ student.average | round(2) }}</td>
+                <td>{{ student.average | round(2) }}</td> <!-- Average grade -->
             </tr>
             {% endfor %}
         </tbody>
     </table>
 
+    <!-- Subject Averages -->
     <h2>Subject Averages</h2>
     <table border="1">
         <thead>

@@ -1,87 +1,127 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: #f3f3f3;
+  color: #333;
 }
 
-body {
-    font-family: "Poppins", Arial, sans-serif;
-    background: linear-gradient(to right, #ffecd2, #fcb69f);
-    color: #333;
-    padding: 30px;
+h1,
+h2 {
+  text-align: center;
+  font-weight: 700;
+  color: #444;
+  margin: 1.5rem auto 1rem auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 h1 {
-    text-align: center;
-    font-size: 2.2rem;
-    color: #fff;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  font-size: 2rem;
 }
 
 h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    border-left: 4px solid #ff7f50;
-    padding-left: 10px;
+  font-size: 1.4rem;
 }
 
-.table-container {
-    max-width: 1000px; 
-    margin: 0 auto 40px auto; 
-    background-color: #fff;  
-    border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;        
-    padding: 20px;           
-}
 table {
+  width: 90%;
+  max-width: 1200px;
+  margin: 1rem auto 2rem auto;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+table thead tr th {
+  background: #2c3e50;
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  padding: 1rem;
+  border: none;
+}
+
+table thead tr th:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+table tbody tr td {
+  padding: 1rem;
+  border-bottom: 1px solid #ececec;
+  font-size: 0.95rem;
+  vertical-align: middle;
+  transition: background-color 0.2s ease;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #fbfbfb;
+}
+
+table tbody tr:hover {
+  background-color: #f1f9ff;
+}
+
+table tbody tr td:first-child,
+table tbody tr td:last-child {
+  font-weight: 600;
+  text-align: center;
+  color: #2c3e50;
+}
+
+@media screen and (max-width: 768px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 0; 
-}
+  }
 
-thead th {
-    background-color: #ff7f50;
-    color: #fff;
-    text-transform: uppercase;
-    padding: 14px;
-    letter-spacing: 0.5px;
-    font-size: 0.9rem;
-}
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
 
-th, td {
-    border: 1px solid #f1f1f1;  
-    padding: 14px;
-    font-size: 0.95rem;
+  tr {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  td {
+    position: relative;
+    padding-left: 50%;
     text-align: left;
-}
+    border: none;
+    border-bottom: 1px solid #eee;
+    white-space: pre-wrap;
+  }
 
-td:nth-child(3) {
-    text-align: right;
-}
+  td:before {
+    position: absolute;
+    left: 1rem;
+    width: 45%;
+    padding-right: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: #666;
+  }
 
-tbody tr:hover {
-    background-color: #f9f9f9;
-    transition: background-color 0.3s ease;
-}
+  td:nth-child(1):before {
+    content: "Rank";
+  }
 
-@media screen and (max-width: 600px) {
-    h1 {
-        font-size: 1.8rem;
-    }
-    h2 {
-        font-size: 1.2rem;
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-    table, th, td {
-        font-size: 0.85rem;
-        padding: 10px;
-    }
+  td:nth-child(2):before {
+    content: "Student";
+  }
+
+  td:last-child:before {
+    content: "Average";
+  }
 }
